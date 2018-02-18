@@ -6,6 +6,10 @@ follow_links <- function(session, xpath){
     follow_link(session, xpath=xpath, i=i)})
 }
 
+read_htmls <- function(urls){
+  map(urls, read_html)
+}
+
 torikizoku_top <- html_session(url = "https://sp.torikizoku.co.jp/list/")
 torikizoku_ken <- follow_links(torikizoku_top, "//li[@class = 'linkBox']/a")
 torikizoku_tiku <- map(torikizoku_ken, follow_links,  xpath="//li[@class = 'linkBox']/a") %>% flatten
